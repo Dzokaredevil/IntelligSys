@@ -27,10 +27,24 @@ public class Main {
         System.out.println("incoded str = "+ans1);
         System.out.println("REincoded str = "+ans2);
     }
-
+    private static void task3(){
+        Scanner in = new Scanner(System.in);
+        String inputHex = in.nextLine();
+        try {
+            int outputDecimal = Integer.parseInt(inputHex, 16);
+            System.out.println("Decimal Equivalent = " + outputDecimal);
+        }
+        catch(NumberFormatException ne){
+            System.out.println("Invalid Input");
+        }
+        finally{
+            in.close();
+        }
+    }
 
     public static void main(String[] args) {
         //task1();
-        task2();
+        //task2();
+        task3();
     }
 }
