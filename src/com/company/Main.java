@@ -9,6 +9,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import static com.company.CountLetter.usage;
@@ -82,17 +85,51 @@ public class Main {
         System.out.format("File '%s' has %d instances of letter '%c'.%n", file, count, lookFor);
     }
 
+    private static void task7(String str, int count){
+        final int assumedLineLength = 50;
+        File file = new File(str);
+        List<String> fileList = new ArrayList<>((int)(file.length() / assumedLineLength) * 2);
+        BufferedReader reader = null;
+        int lineCount = 0;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+                fileList.add(line);
+                lineCount++;
+            }
+        } catch (IOException e) {
+            System.err.format("Could not read %s: %s%n", file, e);
+            System.exit(1);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException ignored) {}
+            }
+        }
+        int repeats = Integer.parseInt(String.valueOf(lineCount));
+        Random random = new Random();
+        for (int i = 0; i < repeats; i++) {
+            System.out.format("%d: %s%n", i, fileList.get(random.nextInt(lineCount - 1)));
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         //task1();
         //task2();
         //task3();
         //task4();
+        //task6();
 
         /*Scanner in = new Scanner(System.in);
         String s = in.nextLine();
         OnlinePalindrome.checkPalindrome(s, 256, 101);
         */
-        task6();
+
+        task7(args[0],Integer.parseInt(args[1]));
+
+
+
 
     }
 }
