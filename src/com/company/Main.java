@@ -5,16 +5,13 @@ import com.company.suppliers.IntegSupplier;
 import com.company.suppliers.LineSupplier;
 import com.company.suppliers.WordSupplier;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Collectors;
+import java.util.Scanner;
+
+import static com.company.CountLetter.usage;
 
 public class Main {
 
@@ -76,19 +73,26 @@ public class Main {
         System.out.println(lineSupplier.get());
 
         System.out.println("word =");
-        System.out.println(wordSupplier.get().toString());
+        System.out.println(wordSupplier.get());
     }
-
+    private static void task6() throws IOException {
+        char lookFor = 'r';
+        Path file = Paths.get("poem.txt");
+        int count = new CountLetter(lookFor, file).count();
+        System.out.format("File '%s' has %d instances of letter '%c'.%n", file, count, lookFor);
+    }
 
     public static void main(String[] args) throws IOException {
         //task1();
         //task2();
         //task3();
-        task4();
+        //task4();
+
         /*Scanner in = new Scanner(System.in);
         String s = in.nextLine();
         OnlinePalindrome.checkPalindrome(s, 256, 101);
         */
+        task6();
 
     }
 }
