@@ -39,7 +39,7 @@ class OnlinePalindrome {
                 rightHash = (rightHash + 101 - letters[(i+1)/2]*h);
                 rightHash = ((rightHash * 256) % 101 + letters[i+1]) % 101;
             } else {
-                h = (h* 256) % 101;
+                h = (h*256) % 101;
                 leftHash  = (letters[i/2] * h + leftHash) % 101;
                 rightHash = ((rightHash * 256) % 101 + letters[i+1]) % 101;
             }
