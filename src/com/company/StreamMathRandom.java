@@ -8,6 +8,6 @@ import java.util.stream.Stream;
  */
 class StreamMathRandom {
     static Stream<Long> getRS(long a, long c, long m){
-        return Stream.iterate(1L, n -> (a*n + c)%m);
+        return Stream.iterate(1L, n -> (a*n + c) % m);
     }
 }
